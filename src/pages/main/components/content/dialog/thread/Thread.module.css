@@ -1,0 +1,10 @@
+.thread {
+    padding: 10px;
+}
+
+.thread img {
+    width: 40px;
+    border-radius: 20px;
+    border: 1px solid green;
+    box-shadow: 0 0 7px #666;
+}

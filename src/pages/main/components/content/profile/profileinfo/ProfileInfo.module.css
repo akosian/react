@@ -1,0 +1,11 @@
+.info {
+    padding: 10px;
+    color: black;
+}
+
+.info img {
+    width: 100px;
+    height: 100px;
+    border: 1px solid green;
+    box-shadow: 0 0 7px #666;
+}
