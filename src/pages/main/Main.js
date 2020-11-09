@@ -5,23 +5,25 @@ import './Main.css'
 import Dialogs from "./components/content/dialog/Dialogs"
 import Music from './components/content/music/Music'
 import News from './components/content/news/News'
-import {BrowserRouter} from "react-router-dom";
-import Route from "react-router-dom/es/Route";
+import {Route} from "react-router-dom";
+import React from "react";
 
-const Main = () => {
+const Main = (props) => {
+    let profilePageData = props.state.profilePage;
+    let dialogsPageData = props.state.dialogsPage;
+    let postMethods = props.postMethods;
+
     return (
-        <BrowserRouter>
-            <div className='app-wrapper'>
-                <Header/>
-                <NavBar/>
-                <div className='app-wrapper-content'>
-                    <Route path='/profile' component={ProfileContent}/>
-                    <Route path='/dialogs' component={Dialogs}/>
-                    <Route path='/news' component={News}/>
-                    <Route path='/music' component={Music}/>
-                </div>
+        <div className='app-wrapper'>
+            <Header/>
+            <NavBar/>
+            <div className='app-wrapper-content'>
+                <Route path='/profile' render={() => <ProfileContent state={profilePageData} postMethods={postMethods}/>}/>
+                <Route path='/dialogs' render={() => <Dialogs state={dialogsPageData}/>}/>
+                <Route path='/news' render={() => <News/>}/>
+                <Route path='/music' render={() => <Music/>}/>
             </div>
-        </BrowserRouter>
+        </div>
     )
 }
 

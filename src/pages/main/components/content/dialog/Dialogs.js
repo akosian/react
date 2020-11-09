@@ -3,14 +3,9 @@ import DialogList from "./dialoglist/DialogList";
 import Thread from "./thread/Thread";
 import React from "react";
 
-const Dialogs = () => {
-    let dialogsData = [
-        {id: 1, name: 'Alena'},
-        {id: 2, name: 'Alex'}]
-
-    let messages = [
-        {id:1,image:'https://avatarfiles.alphacoders.com/527/52773.jpg',text:'Hi'},
-        {id:2,image:'https://avatarfiles.alphacoders.com/527/52773.jpg',text:'How are you?'}]
+const Dialogs = (props) => {
+    let messages = props.state.messages
+    let dialogsData = props.state.dialogs
 
     return (
         <div className={DialogCss.dialog_content}>

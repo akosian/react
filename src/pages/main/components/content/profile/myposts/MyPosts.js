@@ -1,30 +1,20 @@
 import React from "react";
 import Post from './post/Post'
 
-const MyPosts = () => {
-    let postsValue = [
-        {
-            id: 1,
-            text: 'My first post',
-            likes: 10,
-            creator: 'Anton',
-            avatar: 'https://img1.ak.crunchyroll.com/i/spire3/3614810e9ada5235038e8deb4adc264c1447729591_large.jpg'
-        },
-        {
-            id: 2,
-            text: 'Shit happens',
-            likes: 0,
-            creator: 'Alex',
-            avatar: 'https://avatarfiles.alphacoders.com/527/52773.jpg'
-        }
-    ]
+const MyPosts = (props) => {
+    let posts = props.postsValue.map(value => <Post postObject={value}/>)
 
-    let posts = postsValue.map(value => <Post postObject={value}/>)
+    let addPost = () => {
+        props.postMethods.addPost(newPostElement.current.value)
+        newPostElement.current.value = '';
+    }
+
+    let newPostElement = React.createRef();
 
     return (
         <div className='posts'>
-            <textarea placeholder='Enter post text...'></textarea>
-            <button>Save</button>
+            <textarea placeholder='Enter post text...' ref={newPostElement}></textarea>
+            <button onClick={addPost}>Save</button>
             {posts}
         </div>
     )
