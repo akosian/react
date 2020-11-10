@@ -1,20 +1,28 @@
-import State from "./state";
-import {rerenderTree} from "../render";
+import store from "./state";
 
-let addPostMethod = (newPostValue) => {
+let addPostFunc = () => {
+    let state = store.getState();
     let postObject = {
         id: 5,
-        avatar: '',
-        text: newPostValue,
+        avatar: 'https://img1.ak.crunchyroll.com/i/spire3/3614810e9ada5235038e8deb4adc264c1447729591_large.jpg',
+        text: state.profilePage.newPostText,
         creator: 'Me',
         likes: 0
     }
-    State.profilePage.postsValue.push(postObject);
-    rerenderTree(State)
+    state.profilePage.postsValue.push(postObject);
+    state.profilePage.newPostText = ''
+    store.renderTree()
 }
 
-let PostMethods = {
-    addPost: addPostMethod
+let fillPostFunc = (newPostText) => {
+    let state = store.getState();
+    state.profilePage.newPostText = newPostText
+    store.renderTree()
 }
 
-export default PostMethods;
+let PostFunctions = {
+    addPost: addPostFunc,
+    fillPost: fillPostFunc
+}
+
+export default PostFunctions;

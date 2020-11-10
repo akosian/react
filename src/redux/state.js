@@ -1,3 +1,5 @@
+import PostFunctions from "./PostsMethods";
+
 let dialogsData = [
     {id: 1, name: 'Alena'},
     {id: 2, name: 'Alex'}]
@@ -33,12 +35,37 @@ let userInfoData = {
 let state = {
     profilePage: {
         postsValue: postsValueData,
-        userInfo: userInfoData
+        userInfo: userInfoData,
+        newPostText: ''
     },
     dialogsPage: {
         dialogs: dialogsData,
         messages: messagesData
+    },
+}
+
+let pagesFunctions = {
+    profilePage: {
+        PostFunctions: PostFunctions
     }
 }
 
-export default state;
+let store = {
+    _state: state,
+    _subscribe: null,
+    _pageFunctions: pagesFunctions,
+    getState() {
+        return this._state;
+    },
+    setSubscribe(observer) {
+        this._subscribe = observer;
+    },
+    renderTree() {
+        this._subscribe()
+    },
+    getPagesFunctions() {
+        return this._pageFunctions;
+    }
+}
+
+export default store;
