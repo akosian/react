@@ -1,12 +1,26 @@
-import PostFunctions from "./PostsMethods";
+import ProfileReducer from "./components/profilepage/ProfileReducer";
+import DialogsReducer from './components/dialogs/DialogsReducer'
 
 let dialogsData = [
     {id: 1, name: 'Alena'},
     {id: 2, name: 'Alex'}]
 
 let messagesData = [
-    {id: 1, image: 'https://avatarfiles.alphacoders.com/527/52773.jpg', text: 'Hi'},
-    {id: 2, image: 'https://avatarfiles.alphacoders.com/527/52773.jpg', text: 'How are you?'}]
+    {
+        id: 1,
+        messages: [
+            {image: 'https://avatarfiles.alphacoders.com/527/52773.jpg', text: 'Hi'},
+            {image: 'https://avatarfiles.alphacoders.com/527/52773.jpg', text: 'How are you?'}
+        ]
+    },
+    {
+        id: 2,
+        messages: [
+            {image: 'https://avatarfiles.alphacoders.com/527/52773.jpg', text: 'Hi'},
+            {image: 'https://avatarfiles.alphacoders.com/527/52773.jpg', text: 'Hi'}
+        ]
+    },
+]
 
 let postsValueData = [
     {
@@ -40,31 +54,27 @@ let state = {
     },
     dialogsPage: {
         dialogs: dialogsData,
-        messages: messagesData
+        messages: messagesData,
+        newMessageText: ''
     },
-}
-
-let pagesFunctions = {
-    profilePage: {
-        PostFunctions: PostFunctions
-    }
 }
 
 let store = {
     _state: state,
     _subscribe: null,
-    _pageFunctions: pagesFunctions,
     getState() {
         return this._state;
     },
     setSubscribe(observer) {
         this._subscribe = observer;
     },
-    renderTree() {
-        this._subscribe()
+    renderTree(store) {
+        this._subscribe(store)
     },
-    getPagesFunctions() {
-        return this._pageFunctions;
+    dispatch(action) {
+        this._state.profilePage = ProfileReducer(this._state.profilePage, action);
+        this._state.dialogsPage = DialogsReducer(this._state.dialogsPage, action);
+        this.renderTree(this);
     }
 }
 

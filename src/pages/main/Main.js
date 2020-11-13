@@ -9,18 +9,17 @@ import {Route} from "react-router-dom";
 import React from "react";
 
 const Main = (props) => {
-
-    let profilePageData = props.store.getState().profilePage;
-    let dialogsPageData = props.store.getState().dialogsPage;
-    let profilePageFunctions = props.store.getPagesFunctions().profilePage;
+    let profilePageData = props.state.profilePage;
+    let dialogsPageData = props.state.dialogsPage;
+    let dispatch = props.dispatch;
 
     return (
         <div className='app-wrapper'>
             <Header/>
             <NavBar/>
             <div className='app-wrapper-content'>
-                <Route path='/profile' render={() => <ProfileContent state={profilePageData} profilePageFunctions={profilePageFunctions}/>}/>
-                <Route path='/dialogs' render={() => <Dialogs state={dialogsPageData}/>}/>
+                <Route path='/profile' render={() => <ProfileContent state={profilePageData} dispatch={dispatch}/>}/>
+                <Route path='/dialogs' render={() => <Dialogs state={dialogsPageData} dispatch={dispatch}/>}/>
                 <Route path='/news' render={() => <News/>}/>
                 <Route path='/music' render={() => <Music/>}/>
             </div>

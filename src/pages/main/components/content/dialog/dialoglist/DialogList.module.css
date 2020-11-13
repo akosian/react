@@ -1,4 +1,6 @@
-.dialog_list {
+.dialog_content {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
     padding: 10px;
 }
 

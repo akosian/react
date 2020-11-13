@@ -8,14 +8,14 @@ let content = profileContent.content;
 const ProfileContent = (props) => {
     let userInfo = props.state.userInfo;
     let postsValue = props.state.postsValue;
-    let postMethods = props.profilePageFunctions.PostFunctions;
+    let dispatch = props.dispatch;
 
     return (
         <div className={content}>
             <ProfileInfo name={userInfo.name} age={userInfo.age}
                          avatar={userInfo.avatar}
                          background={userInfo.background}/>
-            <MyPosts postsValue={postsValue} postMethods={postMethods} newPostText={props.state.newPostText}/>
+            <MyPosts postsValue={postsValue} dispatch={dispatch} newPostText={props.state.newPostText}/>
         </div>
     )
 }

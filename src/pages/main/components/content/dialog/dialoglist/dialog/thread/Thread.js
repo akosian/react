@@ -9,8 +9,9 @@ const Thread = (props) => {
     return (
         <div className={ThreadCss.thread}>
             {messages}
+            <br/>
             <div>
-                <MessageForm/>
+                <MessageForm dispatch={props.dispatch} newMessageText={props.newMessageText}/>
             </div>
         </div>
     )
