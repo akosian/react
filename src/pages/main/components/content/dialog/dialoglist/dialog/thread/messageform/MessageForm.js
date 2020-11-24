@@ -1,23 +1,21 @@
 import React from "react";
-import {AddMessageCreator, UpdateNewMessageTextCreator} from '../../../../../../../../../redux/components/dialogs/messages/MessageActionCreator'
 
 const MessageForm = (props) => {
-    let dispatch = props.dispatch;
-
     let newMessage = React.createRef();
 
-    let addMessage = () => {
-        dispatch(AddMessageCreator())
+    let onAddMessage = () => {
+        props.onAddMsg()
     }
 
-    let updateNewMessageText = () => {
-        dispatch(UpdateNewMessageTextCreator(newMessage.current.value))
+    let onChangeNewMsgText = () => {
+        let newText = newMessage.current.value;
+        props.onNewMsgTextChange(newText)
     }
 
     return (
         <div>
-            <textarea onChange={updateNewMessageText} ref={newMessage} value={props.newMessageText}/>
-            <button onClick={addMessage}>Send</button>
+            <textarea onChange={onChangeNewMsgText} ref={newMessage} value={props.newMessageText}/>
+            <button onClick={onAddMessage}>Send</button>
         </div>
     )
 }

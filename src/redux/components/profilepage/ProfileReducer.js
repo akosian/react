@@ -24,22 +24,24 @@ let userInfoData = {
     background: 'https://c.wallhere.com/photos/0a/93/reactJS_JavaScript_Typescript_programming_programming_language_React_Native_Facebook_React-1568827.jpg!d'
 }
 
-let addPostFunc = (store) => {
+let addPostFunc = (state) => {
     let postObject = {
         id: 5,
         avatar: 'https://img1.ak.crunchyroll.com/i/spire3/3614810e9ada5235038e8deb4adc264c1447729591_large.jpg',
-        text: store.newPostText,
+        text: state.newPostText,
         creator: 'Me',
         likes: 0
     }
-    store.postsValue.push(postObject);
-    store.newPostText = ''
-    return store;
+    let stateCopy = {...state}
+    stateCopy.postsValue = [...state.postsValue]
+    stateCopy.postsValue.push(postObject);
+    stateCopy.newPostText = ''
+    return stateCopy;
 }
 
-let fillPostFunc = (store, newPostText) => {
-    store.newPostText = newPostText
-    return store;
+let fillPostFunc = (state, newPostText) => {
+    state.newPostText = newPostText
+    return state;
 }
 
 let initialState = {
@@ -48,14 +50,14 @@ let initialState = {
     newPostText: ''
 }
 
-let ProfileReducer = (store = initialState, action) => {
+let ProfileReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST:
-            return addPostFunc(store)
+            return addPostFunc(state)
         case UPDATE_NEW_POST_TEXT:
-            return fillPostFunc(store, action.newPostText)
+            return fillPostFunc(state, action.newPostText)
         default:
-            return store;
+            return state;
     }
 }
 

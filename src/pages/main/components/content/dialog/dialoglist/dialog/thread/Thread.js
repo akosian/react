@@ -11,7 +11,8 @@ const Thread = (props) => {
             {messages}
             <br/>
             <div>
-                <MessageForm dispatch={props.dispatch} newMessageText={props.newMessageText}/>
+                <MessageForm onNewMsgTextChange={props.onNewMsgTextChange}
+                             onAddMsg={props.onAddMsg} newMessageText={props.newMessageText}/>
             </div>
         </div>
     )

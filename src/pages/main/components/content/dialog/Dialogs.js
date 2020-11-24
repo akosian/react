@@ -1,10 +1,10 @@
-import DialogList from "./dialoglist/DialogList";
 import React from "react";
+import DialogListContainer from "./dialoglist/DialogsListContainer";
 
-const Dialogs = (props) => {
+const Dialogs = () => {
     return (
         <div>
-            <DialogList state={props.state} dispatch={props.dispatch}/>
+            <DialogListContainer/>
         </div>
     )
 }

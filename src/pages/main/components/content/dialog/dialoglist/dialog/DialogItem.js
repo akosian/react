@@ -1,8 +1,8 @@
-import DialogsCss from "./Dialog.module.css";
+import DialogsCss from "./DialogItem.module.css";
 import React from "react";
 import {NavLink} from "react-router-dom";
 
-const Dialog = (props) => {
+const DialogItem = (props) => {
     return (
         <div className={DialogsCss.item}>
             <NavLink to={`/dialogs/${props.id}`} activeClassName={DialogsCss.active}>
@@ -12,4 +12,4 @@ const Dialog = (props) => {
     )
 }
 
-export default Dialog;
+export default DialogItem;

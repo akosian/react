@@ -21,20 +21,23 @@ let messagesData = [
     },
 ]
 
-const UpdateNewMessageText = (store, newMessageText) => {
-    store.newMessageText = newMessageText
-    return store;
+const UpdateNewMessageText = (state, newMessageText) => {
+    let newState = {...state}
+    newState.newMessageText = newMessageText
+    return newState;
 }
 
-const AddMessage = (store) => {
+const AddMessage = (state) => {
     let newMessage = {
         id: 2,
-        text: store.newMessageText,
+        text: state.newMessageText,
         image: 'https://avatarfiles.alphacoders.com/527/52773.jpg'
     }
-    store.messages[0].messages.push(newMessage)
-    store.newMessageText = ''
-    return store;
+    let newState = {...state}
+    newState.messages = [...state.messages]
+    newState.messages[0].messages.push(newMessage)
+    newState.newMessageText = ''
+    return newState;
 }
 
 let initialState = {
