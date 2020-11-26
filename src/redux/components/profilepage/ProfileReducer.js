@@ -32,16 +32,18 @@ let addPostFunc = (state) => {
         creator: 'Me',
         likes: 0
     }
-    let stateCopy = {...state}
-    stateCopy.postsValue = [...state.postsValue]
-    stateCopy.postsValue.push(postObject);
-    stateCopy.newPostText = ''
-    return stateCopy;
+    return {
+        ...state,
+        postsValue: [...state.postsValue, postObject],
+        newPostText: ''
+    };
 }
 
 let fillPostFunc = (state, newPostText) => {
-    state.newPostText = newPostText
-    return state;
+    return {
+        ...state,
+        newPostText: newPostText
+    };
 }
 
 let initialState = {

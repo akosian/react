@@ -4,7 +4,7 @@ let dialogsData = [
     {id: 1, name: 'Alena'},
     {id: 2, name: 'Alex'}]
 
-let messagesData = [
+let threads = [
     {
         id: 1,
         messages: [
@@ -22,34 +22,42 @@ let messagesData = [
 ]
 
 const UpdateNewMessageText = (state, newMessageText) => {
-    let newState = {...state}
-    newState.newMessageText = newMessageText
-    return newState;
+    return {
+        ...state,
+        newMessageText: newMessageText
+    };
 }
 
-const AddMessage = (state) => {
+const AddMessage = (state, id) => {
     let newMessage = {
         id: 2,
         text: state.newMessageText,
         image: 'https://avatarfiles.alphacoders.com/527/52773.jpg'
     }
-    let newState = {...state}
-    newState.messages = [...state.messages]
-    newState.messages[0].messages.push(newMessage)
-    newState.newMessageText = ''
-    return newState;
+    return {
+        ...state,
+        messages: state.threads.map(thread => {
+            if (thread.id === id) {
+                let updMessage = {...thread}
+                updMessage.messages.push(newMessage)
+                return updMessage
+            }
+            return thread
+        }),
+        newMessageText: ''
+    };
 }
 
 let initialState = {
     dialogs: dialogsData,
-    messages: messagesData,
+    threads: threads,
     newMessageText: ''
 }
 
 const DialogsReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_MESSAGE:
-            return AddMessage(state)
+            return AddMessage(state, action.id)
         case UPDATE_NEW_MSG_TEXT:
             return UpdateNewMessageText(state, action.newMessageText)
         default:

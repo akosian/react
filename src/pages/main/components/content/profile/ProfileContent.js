@@ -15,7 +15,8 @@ const ProfileContent = (props) => {
             <ProfileInfo name={userInfo.name} age={userInfo.age}
                          avatar={userInfo.avatar}
                          background={userInfo.background}/>
-            <MyPosts postsValue={props.postsValue} onAddPost={onAddPost} onNewPostChange={onNewPostChange}/>
+            <MyPosts postsValue={props.postsValue} newPostText={props.newPostText} onAddPost={onAddPost}
+                     onNewPostChange={onNewPostChange}/>
         </div>
     )
 }

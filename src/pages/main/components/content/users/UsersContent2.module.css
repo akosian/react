@@ -1,0 +1,12 @@
+.item {
+    padding: 5px;
+}
+
+.item .selectedPage {
+    font-weight: bold;
+}
+
+.item button {
+    background-color: cornflowerblue;
+    padding: 5px;
+}

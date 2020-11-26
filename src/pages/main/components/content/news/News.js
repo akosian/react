@@ -1,12 +1,11 @@
-import NewsItem from "./newsitem/NewsItem";
+import NewsContainer from "./NewsContainer";
+import React from "react";
 
 const News = () => {
     return (
         <div>
-            <div><h2>News</h2></div>
-            <NewsItem/>
-            <NewsItem/>
-            <NewsItem/>
+            <h2>News</h2>
+            <NewsContainer/>
         </div>
     )
 }

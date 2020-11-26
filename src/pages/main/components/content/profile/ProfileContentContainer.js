@@ -5,7 +5,8 @@ import {AddPost, UpdateNewPostText} from "../../../../../redux/components/profil
 let mapStateToProps = (state) => {
     return {
         userInfo: state.profilePage.userInfo,
-        postsValue: state.profilePage.postsValue
+        postsValue: state.profilePage.postsValue,
+        newPostText: state.profilePage.newPostText
     }
 }
 
