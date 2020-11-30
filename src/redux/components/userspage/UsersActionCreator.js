@@ -4,6 +4,7 @@ export const SET_USERS = 'SET-USERS'
 export const CHANGE_PAGE = 'CHANGE_PAGE'
 export const TOTAL_COUNT = 'TOTAL_COUNT'
 export const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING'
+export const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE-IS-FOLLOWING-PROGRESS'
 
 export const FollowAC = (id) => ({
     type: FOLLOW,
@@ -33,4 +34,10 @@ export const SetCurrentPageAC = (currentPage) => ({
 export const ToggleIsFetchingAC = (isFetching) => ({
     type: TOGGLE_IS_FETCHING,
     isFetching: isFetching
+})
+
+export const ToggleIsFollowingProgressAC = (isInProgress, userId) => ({
+    type: TOGGLE_IS_FOLLOWING_PROGRESS,
+    isInProgress: isInProgress,
+    userId: userId
 })

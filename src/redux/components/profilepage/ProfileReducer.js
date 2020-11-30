@@ -1,4 +1,11 @@
-import {ADD_POST, SET_USER_INFO, TOGGLE_IS_FETCHING, UPDATE_NEW_POST_TEXT} from "./posts/PostsActionCreator";
+import {
+    ADD_POST,
+    SET_USER_INFO,
+    SetUserInfoAC,
+    TOGGLE_IS_FETCHING,
+    UPDATE_NEW_POST_TEXT
+} from "./posts/PostsActionCreator";
+import * as ProfileApi from "../../../api/ProfileApi";
 
 let postsValueData = [
     {
@@ -61,6 +68,14 @@ let initialState = {
     isFetching: false,
     currentUserId: 12910,
     userId: 10
+}
+
+export const getUserInfoThunkCreator = (userId) => {
+    return (dispatch) => {
+        ProfileApi.getProfileInfo(userId).then(result => {
+            dispatch(SetUserInfoAC(result))
+        })
+    }
 }
 
 let ProfileReducer = (state = initialState, action) => {

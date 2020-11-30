@@ -2,8 +2,7 @@ import header from './Header.module.css'
 import {NavLink} from "react-router-dom";
 
 const Header = (props) => {
-    debugger
-     return (
+    return (
         <header className={header.header}>
             <img src='https://cdn0.iconfinder.com/data/icons/round-arrows-1/134/small_left_red-512.png'/>
             <div className={header.loginBlock}>

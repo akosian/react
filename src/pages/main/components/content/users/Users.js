@@ -22,10 +22,14 @@ const Users = (props) => {
             {pages.map(p => {
                 return (<button
                         className={props.currentPage === p && UserContentCss.selectedPage}
-                        onClick={() => {props.onPageChange(p)}}>{p}</button>
+                        onClick={() => {
+                            props.onPageChange(p)
+                        }}>{p}</button>
                 )
             })}
-            <UsersContent users={props.users} follow={props.follow} unfollow={props.unfollow}/>
+            <UsersContent users={props.users} follow={props.follow} unfollow={props.unfollow}
+                          toggleIsFollowingProgress={props.toggleIsFollowingProgress}
+                          isFollowingProgress={props.isFollowingProgress}/>
         </div>
     )
 }

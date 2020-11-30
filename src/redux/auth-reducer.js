@@ -1,4 +1,5 @@
-import {SET_AUTHORIZATION} from "./authAC";
+import {SET_AUTHORIZATION, SetAuthorizationAC} from "./authAC";
+import * as AuthApi from "../api/AuthApi";
 
 
 let setAuthorization = (state, data, isAuthorized) => {
@@ -16,6 +17,16 @@ const initialState = {
         email: null
     },
     isAuthorized: false
+}
+
+export const SetAuthorizationThunkCreator = () => {
+    return (dispatch) => {
+        AuthApi.getIsAuth().then(response => {
+            let isAuthorized = response.data.resultCode === 0
+            let {id, login, email} = response.data.data
+            dispatch(SetAuthorizationAC(id, login, email, isAuthorized))
+        })
+    }
 }
 
 const AuthReducer = (state = initialState, action) => {

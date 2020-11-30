@@ -5,12 +5,22 @@ import {
     UpdateNewMessageTextCreator
 } from "../../../../../../redux/components/dialogs/messages/MessageActionCreator";
 import {connect} from "react-redux";
+import {withAuthRedirect} from "../../../../../../hoc/WithAuthRedirect";
+import {compose} from "redux";
+
+class DialogsListComponent extends React.Component {
+
+    render() {
+        return <DialogList dialogsData={this.props.dialogsData} threads={this.props.threads}
+                           newMessageText={this.props.newMessageText}/>
+    }
+}
 
 let mapStateToProps = (state) => {
     return {
         threads: state.dialogsPage.threads,
         dialogsData: state.dialogsPage.dialogs,
-        newMessageText: state.dialogsPage.newMessageText
+        newMessageText: state.dialogsPage.newMessageText,
     }
 }
 
@@ -19,6 +29,4 @@ let mapDispatchToProps = {
     onAddMsg: AddMessageCreator
 }
 
-const DialogListContainer = connect(mapStateToProps, mapDispatchToProps)(DialogList);
-
-export default DialogListContainer;
+export default compose(connect(mapStateToProps, mapDispatchToProps), withAuthRedirect)(DialogsListComponent);

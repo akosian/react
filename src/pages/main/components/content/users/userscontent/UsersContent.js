@@ -1,13 +1,15 @@
 import UserContentCss from "./UsersContent.module.css";
-import UserItem from "./user/UserItem";
 import React from "react";
+import UserItemComponent from "./user/UserItemContainer";
 
 const UsersContent = (props) => {
     return (
         <div className={UserContentCss.item}>
-            {props.users.map(user => <UserItem follow={props.follow}
-                                                    unfollow={props.unfollow}
-                                                    user={user}/>)}
+            {props.users.map(user => <UserItemComponent follow={props.follow}
+                                                        unfollow={props.unfollow}
+                                                        user={user}
+                                                        toggleIsFollowingProgress={props.toggleIsFollowingProgress}
+                                                        isFollowingProgress={props.isFollowingProgress}/>)}
             <br></br>
             <div>
                 <button>Show All</button>

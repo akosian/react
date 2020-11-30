@@ -18,7 +18,7 @@ export const ToggleIsFetchingAC = (isFetching) => ({
     isFetching: isFetching
 })
 
-export const SetUserInfo = (userInfo) => ({
+export const SetUserInfoAC = (userInfo) => ({
     type: SET_USER_INFO,
     userInfo: userInfo
 })
