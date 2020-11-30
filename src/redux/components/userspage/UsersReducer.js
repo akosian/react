@@ -1,16 +1,20 @@
-import {CHANGE_PAGE, FOLLOW, HIDE_ALL, SET_USERS, SHOW_ALL, UNFOLLOW} from "./UsersActionCreator";
-
-const showUsers = [
-    // users[0],
-    // users[1]
-]
+import {
+    CHANGE_PAGE,
+    FOLLOW,
+    HIDE_ALL,
+    SET_USERS,
+    SHOW_ALL,
+    TOGGLE_IS_FETCHING,
+    TOTAL_COUNT,
+    UNFOLLOW
+} from "./UsersActionCreator";
 
 let initialState = {
     users: [],
-    showUsers: showUsers,
     totalCount: 0,
-    page: 1,
-    count: 10
+    pageSize: 5,
+    currentPage: 1,
+    isFetching: false
 }
 
 let setUsers = (state, users) => {
@@ -20,17 +24,24 @@ let setUsers = (state, users) => {
     }
 }
 
-let changePage = (state, page) => {
+let toggleIsFetching = (state, isFetching) => {
     return {
         ...state,
-        page: page
+        isFetching: isFetching
     }
 }
 
-let showAll = (state) => {
+let setCurrentPage = (state, page) => {
     return {
         ...state,
-        showUsers: [...state.users]
+        currentPage: page
+    }
+}
+
+let setTotalCount = (state, totalCount) => {
+    return {
+        ...state,
+        totalCount: totalCount
     }
 }
 
@@ -58,19 +69,9 @@ let unfollowUser = (state, id) => {
     }
 }
 
-let hideAll = (state) => {
-    return {
-        ...state,
-        // showUsers: [users[0], users[1]]
-    }
-}
 
 const UsersReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SHOW_ALL:
-            return showAll(state)
-        case HIDE_ALL:
-            return hideAll(state)
         case FOLLOW:
             return followUser(state, action.id)
         case UNFOLLOW:
@@ -78,7 +79,11 @@ const UsersReducer = (state = initialState, action) => {
         case SET_USERS:
             return setUsers(state, action.users)
         case CHANGE_PAGE:
-            return changePage(state, action.page)
+            return setCurrentPage(state, action.page)
+        case TOTAL_COUNT:
+            return setTotalCount(state, action.totalCount)
+        case TOGGLE_IS_FETCHING:
+            return toggleIsFetching(state, action.isFetching)
         default:
             return state
     }

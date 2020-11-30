@@ -2,7 +2,8 @@ import {ADD_NEWS, SET_NEWS, UPDATE_NEW_NEWS_TEXT} from "./NewsActionCreator";
 
 const initialState = {
     newNewsText: '',
-    news: []
+    news: [],
+    isFetching: true
 }
 
 const addNews = (state) => {

@@ -1,4 +1,4 @@
-import {ADD_POST, UPDATE_NEW_POST_TEXT} from "./posts/PostsActionCreator";
+import {ADD_POST, SET_USER_INFO, TOGGLE_IS_FETCHING, UPDATE_NEW_POST_TEXT} from "./posts/PostsActionCreator";
 
 let postsValueData = [
     {
@@ -17,13 +17,6 @@ let postsValueData = [
     }
 ]
 
-let userInfoData = {
-    name: 'Anton',
-    age: 23,
-    avatar: 'https://img1.ak.crunchyroll.com/i/spire3/3614810e9ada5235038e8deb4adc264c1447729591_large.jpg',
-    background: 'https://c.wallhere.com/photos/0a/93/reactJS_JavaScript_Typescript_programming_programming_language_React_Native_Facebook_React-1568827.jpg!d'
-}
-
 let addPostFunc = (state) => {
     let postObject = {
         id: 5,
@@ -39,6 +32,21 @@ let addPostFunc = (state) => {
     };
 }
 
+let setProfileInfo = (state, userInfo) => {
+    return {
+        ...state,
+        userInfo: userInfo,
+        userId: userInfo.userId
+    }
+}
+
+let toggleIsFetching = (state, isFetching) => {
+    return {
+        ...state,
+        isFetching: isFetching
+    }
+}
+
 let fillPostFunc = (state, newPostText) => {
     return {
         ...state,
@@ -48,8 +56,11 @@ let fillPostFunc = (state, newPostText) => {
 
 let initialState = {
     postsValue: postsValueData,
-    userInfo: userInfoData,
-    newPostText: ''
+    userInfo: null,
+    newPostText: '',
+    isFetching: false,
+    currentUserId: 12910,
+    userId: 10
 }
 
 let ProfileReducer = (state = initialState, action) => {
@@ -58,6 +69,10 @@ let ProfileReducer = (state = initialState, action) => {
             return addPostFunc(state)
         case UPDATE_NEW_POST_TEXT:
             return fillPostFunc(state, action.newPostText)
+        case TOGGLE_IS_FETCHING:
+            return toggleIsFetching(state, action.isFetching)
+        case SET_USER_INFO:
+            return setProfileInfo(state, action.userInfo)
         default:
             return state;
     }

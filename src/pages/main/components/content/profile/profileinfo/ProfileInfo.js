@@ -9,7 +9,7 @@ const ProfileInfo = (props) => {
             <div className={ProfileInfoCss.info}>
                 <img src={props.avatar}/>
                 <br></br>
-                <span>{props.name} {props.age}</span>
+                <span>{props.fullName} {props.aboutMe}</span>
             </div>
         </div>
     )

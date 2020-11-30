@@ -1,17 +1,9 @@
-export const SHOW_ALL = 'SHOW-ALL'
-export const HIDE_ALL = 'HIDE-USERS'
 export const FOLLOW = 'FOLLOW'
 export const UNFOLLOW = 'UNFOLLOW'
 export const SET_USERS = 'SET-USERS'
 export const CHANGE_PAGE = 'CHANGE_PAGE'
-
-export const ShowAllUsersAC = () => ({
-    type: SHOW_ALL
-})
-
-export const HideUsersAC = () => ({
-    type: HIDE_ALL
-})
+export const TOTAL_COUNT = 'TOTAL_COUNT'
+export const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING'
 
 export const FollowAC = (id) => ({
     type: FOLLOW,
@@ -23,12 +15,22 @@ export const UnFollowAC = (id) => ({
     id: id
 })
 
-export const SetUsers = (users) => ({
+export const SetUsersAC = (users) => ({
     type: SET_USERS,
     users: users
 })
 
-export const ChangePage = (pageNumber) => ({
+export const SetTotalCountAC = (totalCount) => ({
+    type: TOTAL_COUNT,
+    totalCount: totalCount
+})
+
+export const SetCurrentPageAC = (currentPage) => ({
     type: CHANGE_PAGE,
-    page: pageNumber
+    page: currentPage
+})
+
+export const ToggleIsFetchingAC = (isFetching) => ({
+    type: TOGGLE_IS_FETCHING,
+    isFetching: isFetching
 })

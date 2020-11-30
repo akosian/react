@@ -2,6 +2,7 @@ import profileContent from './ProfileContent.module.css'
 import React from "react";
 import ProfileInfo from "./profileinfo/ProfileInfo";
 import MyPosts from "./myposts/MyPosts";
+import Preloader from "../preloader/Preloader";
 
 let content = profileContent.content;
 
@@ -10,15 +11,17 @@ const ProfileContent = (props) => {
     let onNewPostChange = props.onPostChange;
     let onAddPost = props.onAddPost;
 
-    return (
-        <div className={content}>
-            <ProfileInfo name={userInfo.name} age={userInfo.age}
-                         avatar={userInfo.avatar}
-                         background={userInfo.background}/>
-            <MyPosts postsValue={props.postsValue} newPostText={props.newPostText} onAddPost={onAddPost}
-                     onNewPostChange={onNewPostChange}/>
-        </div>
-    )
+    if (!userInfo) {
+        return <Preloader/>
+    }
+
+    return <div className={content}>
+        <ProfileInfo fullName={userInfo.fullName} aboutMe={userInfo.aboutMe}
+                     avatar={userInfo.photos.small}
+                     background={userInfo.background}/>
+        <MyPosts postsValue={props.postsValue} newPostText={props.newPostText} onAddPost={onAddPost}
+                 onNewPostChange={onNewPostChange}/>
+    </div>
 }
 
 export default ProfileContent;

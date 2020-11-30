@@ -14,16 +14,9 @@ let mapStateToProps = (state) => {
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        onNewMsgTextChange: (text) => {
-            let action = UpdateNewMessageTextCreator(text)
-            dispatch(action)
-        },
-        onAddMsg: (id) => {
-            dispatch(AddMessageCreator(id))
-        }
-    }
+let mapDispatchToProps = {
+    onNewMsgTextChange: UpdateNewMessageTextCreator,
+    onAddMsg: AddMessageCreator
 }
 
 const DialogListContainer = connect(mapStateToProps, mapDispatchToProps)(DialogList);
