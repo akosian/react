@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from "./Header";
 import {connect} from "react-redux";
-import {SetAuthorizationThunkCreator} from "../../../../redux/auth-reducer";
+import {LogoutThunkCreator, SetAuthorizationThunkCreator} from "../../../../redux/auth-reducer";
 
 class HeaderComponent extends React.Component {
 
@@ -10,7 +10,7 @@ class HeaderComponent extends React.Component {
     }
 
     render() {
-        return <Header isAuthorized={this.props.isAuthorized} login={this.props.data.login}/>
+        return <Header isAuthorized={this.props.isAuthorized} login={this.props.data.login} logout={this.props.logout}/>
     }
 }
 
@@ -20,7 +20,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = ({
-    setAuthorization: SetAuthorizationThunkCreator
+    setAuthorization: SetAuthorizationThunkCreator,
+    logout: LogoutThunkCreator
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderComponent);

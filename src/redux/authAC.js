@@ -1,4 +1,5 @@
 export const SET_AUTHORIZATION = 'SET-AUTHORIZATION'
+export const LOGOUT = 'LOGOUT'
 
 export const SetAuthorizationAC = (id, login, email, isAuthorized) => ({
     type: SET_AUTHORIZATION,
@@ -8,4 +9,8 @@ export const SetAuthorizationAC = (id, login, email, isAuthorized) => ({
         email: email
     },
     isAuthorized: isAuthorized
+})
+
+export const LogoutAC = () => ({
+    type: LOGOUT
 })

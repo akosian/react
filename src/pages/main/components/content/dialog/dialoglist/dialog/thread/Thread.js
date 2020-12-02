@@ -6,17 +6,18 @@ import MessageForm from "./messageform/MessageForm";
 const Thread = (props) => {
     let messages = props.messages.map(data => <Message message={data}/>);
 
-    let onAddMsg = () => {
-        props.onAddMsg(props.id)
+
+    const onSubmit = (formData) => {
+        props.onAddMsg(props.id, formData.newMsgText)
     }
+
 
     return (
         <div className={ThreadCss.thread}>
             {messages}
             <br/>
             <div>
-                <MessageForm onNewMsgTextChange={props.onNewMsgTextChange}
-                             onAddMsg={onAddMsg} newMessageText={props.newMessageText}/>
+                <MessageForm onSubmit={onSubmit} newMessageText={props.newMessageText}/>
             </div>
         </div>
     )

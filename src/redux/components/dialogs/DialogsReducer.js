@@ -21,17 +21,10 @@ let threads = [
     },
 ]
 
-const UpdateNewMessageText = (state, newMessageText) => {
-    return {
-        ...state,
-        newMessageText: newMessageText
-    };
-}
-
-const AddMessage = (state, id) => {
+const AddMessage = (state, id, newMsgText) => {
     let newMessage = {
         id: 2,
-        text: state.newMessageText,
+        text: newMsgText,
         image: 'https://avatarfiles.alphacoders.com/527/52773.jpg'
     }
     return {
@@ -44,22 +37,18 @@ const AddMessage = (state, id) => {
             }
             return thread
         }),
-        newMessageText: ''
     };
 }
 
 let initialState = {
     dialogs: dialogsData,
     threads: threads,
-    newMessageText: ''
 }
 
 const DialogsReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_MESSAGE:
-            return AddMessage(state, action.id)
-        case UPDATE_NEW_MSG_TEXT:
-            return UpdateNewMessageText(state, action.newMessageText)
+            return AddMessage(state, action.id, action.newMsgText)
         default:
             return state;
     }

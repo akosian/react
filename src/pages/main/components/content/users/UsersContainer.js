@@ -7,7 +7,7 @@ import {
 import {connect} from "react-redux";
 import React from "react";
 import Users from "./Users";
-import Preloader from "../preloader/Preloader";
+import Preloader from "../common/Preloader";
 import {
     followUserThunkCreator,
     getUsersThunkCreator,

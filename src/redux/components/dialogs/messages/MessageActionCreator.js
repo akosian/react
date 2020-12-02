@@ -1,12 +1,7 @@
 export const ADD_MESSAGE = 'ADD-MESSAGE'
-export const UPDATE_NEW_MSG_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
 
-export const AddMessageCreator = (id) => ({
+export const AddMessageCreator = (id, newMsgText) => ({
     type: ADD_MESSAGE,
-    id: id
-})
-
-export const UpdateNewMessageTextCreator = (newMessageText) => ({
-    type: UPDATE_NEW_MSG_TEXT,
-    newMessageText: newMessageText
+    id: id,
+    newMsgText: newMsgText
 })

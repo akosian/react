@@ -1,21 +1,17 @@
 import React from "react";
 import Post from './post/Post'
+import NewPost from "./post/NewPostForm";
 
 const MyPosts = (props) => {
     let posts = props.postsValue.map(value => <Post postObject={value}/>)
 
-    let newPostElement = React.createRef();
-
-    let updateNewPostValue = () => {
-        let newText = newPostElement.current.value;
-        props.onNewPostChange(newText)
+    let onAddNewPost = (data) => {
+        props.onAddPost(data.postText)
     }
 
     return (
         <div className='posts'>
-            <textarea onChange={updateNewPostValue} placeholder='Enter post text...' ref={newPostElement}
-                      value={props.newPostText}/>
-            <button onClick={props.onAddPost}>Save</button>
+            <NewPost onSubmit={onAddNewPost}/>
             {posts}
         </div>
     )

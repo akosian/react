@@ -9,7 +9,8 @@ const DialogList = (props) => {
 
     let routes = props.threads.map(message => (
         <Route path={`/dialogs/${message.id}`}
-               render={() => <Thread id={message.id} messages={message.messages} onNewMsgTextChange={props.onNewMsgTextChange}
+               render={() => <Thread id={message.id} messages={message.messages}
+                                     onNewMsgTextChange={props.onNewMsgTextChange}
                                      onAddMsg={props.onAddMsg}
                                      newMessageText={props.newMessageText}
                                      image='https://avatarfiles.alphacoders.com/527/52773.jpg'/>}/>

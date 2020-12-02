@@ -3,8 +3,9 @@ export const UPDATE_NEW_POST_TEXT = "UPDATE-TEXT";
 export const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING'
 export const SET_USER_INFO = 'SET-USER-INFO'
 
-export const AddPost = () => ({
+export const AddPost = (newPostText) => ({
     type: ADD_POST,
+    newPostText: newPostText
 })
 
 export const UpdateNewPostText = (newPostText) => ({

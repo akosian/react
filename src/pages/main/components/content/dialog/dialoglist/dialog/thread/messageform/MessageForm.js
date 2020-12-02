@@ -1,23 +1,19 @@
 import React from "react";
+import {Field, reduxForm} from "redux-form";
+import {Textarea} from "../../../../../common/formscomponent/FormsControls";
+import {maxLength10, required} from "../../../../../../../../../utils/validators/validation";
 
 const MessageForm = (props) => {
-    let newMessage = React.createRef();
-
-    let onAddMessage = () => {
-        props.onAddMsg()
-    }
-
-    let onChangeNewMsgText = () => {
-        let newText = newMessage.current.value;
-        props.onNewMsgTextChange(newText)
-    }
 
     return (
-        <div>
-            <textarea onChange={onChangeNewMsgText} ref={newMessage} value={props.newMessageText}/>
-            <button onClick={onAddMessage}>Send</button>
-        </div>
+        <form onSubmit={props.handleSubmit}>
+            <Field value={props.newMessageText} component={Textarea}
+                   name={'newMsgText'} validate={[required, maxLength10]}/>
+            <button>Send</button>
+        </form>
     )
 }
 
-export default MessageForm;
+const Form = reduxForm({form: 'message'})(MessageForm)
+
+export default Form;

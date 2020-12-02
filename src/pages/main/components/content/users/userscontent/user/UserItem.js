@@ -6,7 +6,6 @@ const UserItem = (props) => {
     let followClick = () => {
         let followAction = props.user.followed ? props.unfollow : props.follow
         followAction()
-        debugger
     }
 
     return (
