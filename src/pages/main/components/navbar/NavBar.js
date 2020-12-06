@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import NavBarContent from "./NavBarContent";
 import {withAuthRedirect} from "../../../../hoc/WithAuthRedirect";
 import {compose} from "redux";
+import {getCurrentUserIdSelector} from "../../../../redux/components/auth/authSelectors";
 
 class NavBarComponent extends React.Component {
 
@@ -13,7 +14,7 @@ class NavBarComponent extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        currentUserId: state.profilePage.currentUserId,
+        currentUserId: getCurrentUserIdSelector(state),
         isAuth: state.auth.isAuthorized
     }
 }

@@ -1,10 +1,10 @@
-export const FOLLOW = 'FOLLOW'
-export const UNFOLLOW = 'UNFOLLOW'
-export const SET_USERS = 'SET-USERS'
-export const CHANGE_PAGE = 'CHANGE_PAGE'
-export const TOTAL_COUNT = 'TOTAL_COUNT'
-export const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING'
-export const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE-IS-FOLLOWING-PROGRESS'
+export const FOLLOW = 'users/FOLLOW'
+export const UNFOLLOW = 'users/UNFOLLOW'
+export const SET_USERS = 'users/SET-USERS'
+export const CHANGE_PAGE = 'users/CHANGE_PAGE'
+export const TOTAL_COUNT = 'users/TOTAL_COUNT'
+export const TOGGLE_IS_FETCHING = 'users/TOGGLE-IS-FETCHING'
+export const TOGGLE_IS_FOLLOWING_PROGRESS = 'users/TOGGLE-IS-FOLLOWING-PROGRESS'
 
 export const FollowAC = (id) => ({
     type: FOLLOW,

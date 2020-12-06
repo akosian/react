@@ -2,8 +2,9 @@ import React from 'react'
 import css from './Login.module.css'
 import LoginForm from "./LoginForm";
 import {connect} from "react-redux";
-import {LoginThunkCreator} from "../../../../../redux/auth-reducer";
+import {LoginThunkCreator} from "../../../../../redux/components/auth/auth-reducer";
 import {Redirect} from "react-router";
+import {getUserDataSelector} from "../../../../../redux/components/auth/authSelectors";
 
 const Login = (props) => {
 
@@ -23,7 +24,7 @@ const Login = (props) => {
 
 const mapStateToProps = (state) => ({
     isAuthorized: state.auth.isAuthorized,
-    data: state.auth.data
+    data: getUserDataSelector(state)
 })
 
 const mapDispatchToProps = ({

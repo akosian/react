@@ -1,4 +1,4 @@
-import {ADD_MESSAGE, UPDATE_NEW_MSG_TEXT} from "./messages/MessageActionCreator";
+import {ADD_MESSAGE} from "./messages/MessageActionCreator";
 
 let dialogsData = [
     {id: 1, name: 'Alena'},

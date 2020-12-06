@@ -1,6 +1,6 @@
 import {LOGOUT, LogoutAC, SET_AUTHORIZATION, SetAuthorizationAC} from "./authAC";
-import * as AuthApi from "../api/AuthApi";
-import {logout} from "../api/AuthApi";
+import * as AuthApi from "../../../api/AuthApi";
+import {logout} from "../../../api/AuthApi";
 import {stopSubmit} from "redux-form";
 
 
@@ -59,10 +59,12 @@ export const LogoutThunkCreator = () => {
 
 export const SetAuthorizationThunkCreator = () => {
     return (dispatch) => {
-        AuthApi.getIsAuth().then(response => {
+        return AuthApi.getIsAuth().then(response => {
             let isAuthorized = response.data.resultCode === 0
-            let {id, login, email} = response.data.data
-            dispatch(SetAuthorizationAC(id, login, email, isAuthorized))
+            if (isAuthorized) {
+                let {id, login, email} = response.data.data
+                dispatch(SetAuthorizationAC(id, login, email, isAuthorized))
+            }
         })
     }
 }

@@ -83,42 +83,32 @@ let unfollowUser = (state, id) => {
     }
 }
 
-export const getUsersThunkCreator = (currentPage, pageSize) => {
-    return (dispatch) => {
-        dispatch(ToggleIsFetchingAC(true))
+export const getUsersThunkCreator = (currentPage, pageSize) => async (dispatch) => {
+    dispatch(ToggleIsFetchingAC(true))
 
-        UsersApi.getUsers(currentPage, pageSize).then(response => {
+    let response = await UsersApi.getUsers(currentPage, pageSize)
 
-            dispatch(ToggleIsFetchingAC(false))
-            dispatch(SetUsersAC(response.data.items))
-            dispatch(SetTotalCountAC(response.data.totalCount))
-        })
-    }
+    dispatch(ToggleIsFetchingAC(false))
+    dispatch(SetUsersAC(response.data.items))
+    dispatch(SetTotalCountAC(response.data.totalCount))
 }
 
-export const followUserThunkCreator = (userId) => {
-    return (dispatch) => {
-        dispatch(ToggleIsFollowingProgressAC(true, userId))
-        UsersApi.followUser(userId)
-            .then(result => {
-                if (result === 0) {
-                    dispatch(FollowAC(userId))
-                }
-            })
-        dispatch(ToggleIsFollowingProgressAC(false, userId))
+export const followUserThunkCreator = (userId) => async (dispatch) => {
+    dispatch(ToggleIsFollowingProgressAC(true, userId))
+    let response = await UsersApi.followUser(userId)
+    if (response === 0) {
+        dispatch(FollowAC(userId))
     }
+    dispatch(ToggleIsFollowingProgressAC(false, userId))
 }
 
-export const unfollowUserThunkCreator = (userId) => {
-    return (dispatch) => {
-        dispatch(ToggleIsFollowingProgressAC(true, userId))
-        UsersApi.unfollowUser(userId).then(result => {
-            if (result === 0) {
-                dispatch(UnFollowAC(userId))
-            }
-        })
-        dispatch(ToggleIsFollowingProgressAC(false, userId))
+export const unfollowUserThunkCreator = (userId) => async (dispatch) => {
+    dispatch(ToggleIsFollowingProgressAC(true, userId))
+    let result = await UsersApi.unfollowUser(userId)
+    if (result === 0) {
+        dispatch(UnFollowAC(userId))
     }
+    dispatch(ToggleIsFollowingProgressAC(false, userId))
 }
 
 

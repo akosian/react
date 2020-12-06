@@ -1,6 +1,6 @@
-export const ADD_NEWS = 'ADD-NEWS';
-export const SET_NEWS = 'SET-NEWS';
-export const UPDATE_NEW_NEWS_TEXT = 'UPDATE-NEW-NEWS-TEXT';
+export const ADD_NEWS = 'news/ADD-NEWS';
+export const SET_NEWS = 'news/SET-NEWS';
+export const UPDATE_NEW_NEWS_TEXT = 'news/UPDATE-NEW-NEWS-TEXT';
 
 export const AddNews = () => ({
     type: ADD_NEWS,

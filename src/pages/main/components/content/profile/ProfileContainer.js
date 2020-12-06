@@ -2,7 +2,6 @@ import {
     AddPost,
     SetUserInfoAC,
     ToggleIsFetchingAC,
-    UpdateNewPostText
 } from "../../../../../redux/components/profilepage/posts/PostsActionCreator";
 import {connect} from "react-redux";
 import React from 'react'
@@ -14,15 +13,23 @@ import {
 } from "../../../../../redux/components/profilepage/ProfileReducer";
 import {withAuthRedirect} from "../../../../../hoc/WithAuthRedirect";
 import {compose} from "redux";
+import {getCurrentUserIdSelector} from "../../../../../redux/components/auth/authSelectors";
 
 class ProfileComponent extends React.Component {
 
     componentDidMount() {
-        let userId = !this.props.match.params.userId
+        let userId = this.props.match.params.userId === undefined
             ? this.props.currentUserId
             : this.props.match.params.userId
         this.props.getProfileInfo(userId)
         this.props.getProfileStatus(userId)
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.match.params.userId !== prevProps.match.params.userId) {
+            this.props.getProfileInfo(this.props.match.params.userId)
+            this.props.getProfileStatus(this.props.match.params.userId)
+        }
     }
 
     render() {
@@ -37,7 +44,7 @@ let mapStateToProps = (state) => {
         userInfo: state.profilePage.userInfo,
         postsValue: state.profilePage.postsValue,
         userId: state.profilePage.userId,
-        currentUserId: state.profilePage.currentUserId,
+        currentUserId: getCurrentUserIdSelector(state),
         status: state.profilePage.status
     }
 }

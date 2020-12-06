@@ -69,29 +69,21 @@ let initialState = {
     userId: 10
 }
 
-export const getUserInfoThunkCreator = (userId) => {
-    return (dispatch) => {
-        ProfileApi.getProfileInfo(userId).then(result => {
-            dispatch(SetUserInfoAC(result))
-        })
-    }
+export const getUserInfoThunkCreator = (userId) => async (dispatch) => {
+    let result = await ProfileApi.getProfileInfo(userId)
+    dispatch(SetUserInfoAC(result))
 }
 
-export const getProfileStatusThunkCreator = (userId) => {
-    return (dispatch) => {
-        ProfileApi.getProfileStatus(userId).then(result => {
-            dispatch(GetProfileStatusAC(result))
-        })
-    }
+
+export const getProfileStatusThunkCreator = (userId) => async (dispatch) => {
+    let result = await ProfileApi.getProfileStatus(userId)
+    dispatch(GetProfileStatusAC(result))
 }
 
-export const updateProfileStatusThunkCreator = (status) => {
-    return (dispatch) => {
-        ProfileApi.setProfileStatus(status).then(result => {
-            if (result === 0) {
-                dispatch(UpdateProfileStatusAC(status))
-            }
-        })
+export const updateProfileStatusThunkCreator = (status) => async (dispatch) => {
+    let result = await ProfileApi.setProfileStatus(status)
+    if (result === 0) {
+        dispatch(UpdateProfileStatusAC(status))
     }
 }
 

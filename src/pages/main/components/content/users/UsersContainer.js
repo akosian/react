@@ -15,6 +15,7 @@ import {
 } from "../../../../../redux/components/userspage/UsersReducer";
 import {withAuthRedirect} from "../../../../../hoc/WithAuthRedirect";
 import {compose} from "redux";
+import {getUsersSelector, getUserSuperSelector} from "../../../../../redux/components/userspage/UsersSelectors";
 
 class UsersComponent extends React.Component {
 
@@ -43,7 +44,7 @@ class UsersComponent extends React.Component {
 let mapStateToProps = (state) => {
     return {
         showUsers: state.usersPage.showUsers,
-        users: state.usersPage.users,
+        users: getUserSuperSelector(state),
         totalCount: state.usersPage.totalCount,
         pageSize: state.usersPage.pageSize,
         currentPage: state.usersPage.currentPage,

@@ -1,4 +1,4 @@
-export const ADD_MESSAGE = 'ADD-MESSAGE'
+export const ADD_MESSAGE = 'dialogs/ADD-MESSAGE'
 
 export const AddMessageCreator = (id, newMsgText) => ({
     type: ADD_MESSAGE,
